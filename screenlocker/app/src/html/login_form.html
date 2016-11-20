@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Timer - St&auml;mpelklocka</title>
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/login_form.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <footer>
+            <p>Don't try and unlock unless you have the password.</p>
+            <hr/>
+            <p class="pull-right time" id="time">12:30</p>
+            <p><i class="fa fa-user" aria-hidden="true"></i>  |  <span id="user">Eddy Ntambwe</span></p>
+            <p><span id="battery-icon"></span>  |  <span id="battery-level">100% Battery</span></p>
+            <p><i class="fa fa-clock-o" aria-hidden="true"></i>  |  <span id="uptime">NTAMBWE</span></p>
+
+        </footer>
+        <div class="login-form">
+            <div class="avatar">
+                <img id="avatar-img" src="../../assets/avatar/avatar.jpg" alt="Avatar" title="Avatar">
+            </div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="password" placeholder="Password...">
+                        <div class="input-group-addon" id="btn-unlock"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </form>
+            <div class="attempts text-center">
+                <p>
+                    <i>Hint: Remember who you are.</i>
+                </p>
+                <br/>
+
+                <span>5</span><br/>
+                <span>attempts left</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="../../packages/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../packages/jquery/jquery-ui.min.js"></script>
+    <script src="../js/login_form.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</body>
+
+</html>
