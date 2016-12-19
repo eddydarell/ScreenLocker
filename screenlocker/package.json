@@ -1,0 +1,42 @@
+{
+    "name": "screenlocker",
+    "version": "0.1.0",
+    "description": "This is a simple descktop screen locker using the device camera to auto unlock or snap a picture upon fail unlock attempts.",
+    "main": "main.js",
+    "author": "Eddy Ntambwe",
+    "scripts": {
+        "start": "electron . main.js",
+        "package": "electron-packager ./ screenlocker --all --out ~/Desktop/stampelKlocka --version 0.1.0 --overwrite --icon=./app/assets/img/tray_logo.png",
+        "dev": "electron . --enable-logging",
+
+        "clean": "del /S /q dist",
+        "clean:osx": "del /S /q dist/osx",
+        "clean:win": "del /S /q dist/win",
+        "clean:linux": "del /S /q dist/linux",
+
+        "pack": " npm run pack:win && npm run pack:linux",
+        "pack:osx": "electron-packager . screenlocker --out=dist/osx --platform=darwin --arch=x64 --version=1.4.3 --overwrite",
+        "pack:win": "electron-packager . screenlocker --out=dist/win --platform=win32 --arch=x64 --version=1.4.3 --overwrite",
+        "pack:linux": "electron-packager . screenlocker --out=dist/linux --platform=linux --arch=x64 --version=1.4.3 --overwrite",
+
+        "build": "npm run clean && npm run pack:win && npm run pack:linux && node node_modules/.bin/build --dist --platform win32 linux --arch all",
+        "build:osx": "npm run pack:osx && node node_modules/.bin/build \"dist/osx/screenlocker-darwin-x64/screenlocker.app\" --platform=osx --out=\"dist/osx\" --config=builder.json",
+        "build:win": "npm run pack:win && node node_modules/.bin/build \"dist/win/screenlocker-win32-x64\" --platform=win --out=\"dist/win\" --config=builder.json",
+        "build:linux": "npm run pack:linux && node node_modules/.bin/build \"dist/linux/screenlocker-linux-x64\" --platform=linux --out=\"dist/linux\" --config=builder.json"
+    },
+    "dependencies": {
+        "electron": "^1.4.0",
+        "bootstrap": "^3.0.0",
+        "font-awesome": "^4.0.0",
+        "angular": "^1.5.0",
+        "nconf": "^0.8.4",
+        "crypto-js": "^3.1.0",
+        "node-webcam": "^0.3.3",
+        "auto-launch": "^5.0.0",
+        "resemblejs": "^2.2.2"
+    },
+    "devDependencies": {
+        "electron-packager": "^8.1.0",
+        "electron-builder": "^7.10.0"
+    }
+}
