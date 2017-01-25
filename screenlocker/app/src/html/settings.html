@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ScreenLocker</title>
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/settings.css">
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="../../packages/jquery/jquery-3.1.1.min.js"></script>
+    <script src="../../packages/jquery/jquery-ui.min.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../packages/trackingjs/build/tracking-min.js"></script>
+    <script src="../../packages/trackingjs/build/data/face.js"></script>
+    <script src="../js/settings.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="settings-banner">
+            <div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="../../assets/lock_icon64x64.png" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">ScreenLocker</h4> Version <span id="app-version">0</span><br />
+                        <i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart text-danger" aria-hidden="true"></i> by TheCodingLion
+                    </div>
+                </div>
+            </div>
+            <div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="Unlock Settings">
+                            <div class="input-group-addon" id="btn-unlock"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="settings-body">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#application" data-toggle="tab">Application</a></li>
+                <li class=""><a href="#appearance" data-toggle="tab">Appearance</a></li>
+                <li class=""><a href="#security" data-toggle="tab">Security</a></li>
+                <li class=""><a href="#about" data-toggle="tab">About</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="application">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <label for="autostart" class="col-xs-4 col-form-label">Autostart</label>
+                                <div class="col-xs-8">
+                                    <input type="checkbox" checked id="autostart"> <small>Starts the screenlocker with the system.</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="side-pane-url" class="col-xs-4 col-form-label">Side Pane URL</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" placeholder="Ex: google.com" id="side-pane-url">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-8 col-xs-offset-4">
+                                    <button class="btn btn-success" id="save-application-settings">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                =========================================
+                         Appearance Container
+                ========================================
+                -->
+                <div class="tab-pane fade" id="appearance">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <label for="enable-chameleon" class="col-xs-4 col-form-label">Chameleon</label>
+                                <div class="col-xs-8">
+                                    <input type="checkbox" checked id="enable-chameleon"> <small>Enables the shifting color theme.</small>
+                                </div>
+                            </div>
+                            <div id="chameleon-color-selector-container">
+                                <div class="form-group row">
+                                    <label for="chameleon-theme-color" class="col-xs-4 col-form-label">Theme Colors</label>
+                                    <div class="col-xs-2">
+                                        <input class="form-control input-sm" type="color" value="#1b34c6" id="chameleon-theme-color1" />
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input class="form-control input-sm" type="color" value="#23F567" id="chameleon-theme-color2" />
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input class="form-control input-sm" type="color" value="#E45E78" id="chameleon-theme-color3" />
+                                    </div>
+                                    <div class="col-xs-2">
+                                        <input class="form-control input-sm" type="color" value="#654321" id="chameleon-theme-color4" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="unique-color-selector-container">
+                                <div class="form-group row">
+                                    <label for="unique-theme-color" class="col-xs-4 col-form-label">Theme Color</label>
+                                    <div class="col-xs-8">
+                                        <input class="form-control input-sm" type="color" value="#123456" id="unique-theme-color"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-xs-8 col-xs-offset-4">
+                                    <button class="btn btn-success" id="save-appearance-settings">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                ===========================================
+                        security settings container
+                ===========================================
+                -->
+                <div class="tab-pane fade" id="security">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-group row">
+                                <label for="new-password" class="col-xs-4 col-form-label">New Password</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="password" name="new-password" id="new-password" required  style="padding-left: 12px !important;margin-right: 10px !important;" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="confirm-new-password" class="col-xs-4 col-form-label">Confirm Password</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="password" name="confirm-new-password" id="confirm-new-password" required style="margin-right: 10px !important;" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="new-pwd-hint" class="col-xs-4 col-form-label">Hint</label>
+                                <div class="col-xs-8">
+                                    <input class="form-control" type="text" placeholder="Hint For Password..." id="new-pwd-hint" required />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-8 col-xs-offset-4">
+                                    <button class="btn btn-success" id="save-security-settings">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-info" style="margin-right: 10px !important;">
+                        <h5><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Note</h5>
+                        <small>All these fields are required.<br />
+                        Password must be at least 8 characters with at least one digit and capital letter. </small>
+                    </div>
+                </div>
+                <!--
+                ===========================================
+                        security settings container
+                ===========================================
+                -->
+                <div class="tab-pane fade" id="about">
+                    <form>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                This is the about section
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer class="footer ">
+
+        </footer>
+    </div>
+
+    <!-- Insert this line above script imports  -->
+
+</body>
+
+</html>
